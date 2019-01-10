@@ -1,0 +1,32 @@
+{
+  "name": "tic_tac_toe",
+  "version": "1.0.0",
+  "description": "Tic Tac Toe",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolechung/tic_tac_toe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolechung/tic_tac_toe/issues"
+  },
+  "homepage": "https://github.com/nicolechung/tic_tac_toe#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "node-sass": "^4.11.0",
+    "parcel-bundler": "^1.11.0",
+    "sass": "^1.16.0"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.0.0"
+  }
+}
