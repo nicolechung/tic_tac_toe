@@ -101,9 +101,6 @@ function calculateScore() {
 }
 
 function checkPlayerWon(player) {
-  console.log('horizonal:', checkStraightWins(player, 'x'))
-  console.log('vertical: ', checkStraightWins(player, 'y'))
-  console.log('diagonal: ', checkDiagonalWins(player))
   return checkStraightWins(player, 'x') || checkStraightWins(player, 'y') || checkDiagonalWins(player)
 }
 
@@ -113,21 +110,6 @@ function checkStraightWins(player, xy) {
     player.filter(item => item[xy] === WIN_LENGTH).length > WIN_LENGTH
   return result
 }
-
-// function checkHorizontalWins(player) {
-//   const result = player.filter(item => item.y === 0).length > WIN_LENGTH ||
-//     player.filter(item => item.y === 1).length > WIN_LENGTH ||
-//     player.filter(item => item.y === WIN_LENGTH).length > WIN_LENGTH
-//   return result
-// }
-
-// function checkVerticalWins(player) {
-//   const result = player.filter(item => item.x === 0).length > WIN_LENGTH ||
-//     player.filter(item => item.x === 1).length > WIN_LENGTH ||
-//     player.filter(item => item.x === WIN_LENGTH).length > WIN_LENGTH
-//    return result
-
-// }
 
 function checkDiagonalWins(player) {
   const diagonal1 = [
@@ -163,17 +145,12 @@ function checkDiagonalWins(player) {
 
 
 function arrayCompare(player, win) {
-  let compares = player.map(item => {
-    const matches = win.map(diagonal => {
-      return diagonal.x == item.x && diagonal.y == item.y
-    })
-    if (matches.includes(true)) {
-      return true
-    }
-    return false
-
+  const filtered = player.filter(player_item => {
+    return win.filter(win_item => {
+      return player_item.x == win_item.x && player_item.y == win_item.y
+    }).length > 0
   })
-  return compares.filter(match => match === true).length > WIN_LENGTH
+  return filtered.length > WIN_LENGTH
 }
 
 /* start game by resetting / initializing the board */
