@@ -6,4 +6,3 @@ This game uses [Parcel](https://parceljs.org/). It should be included with the b
 npm install
 parcel index.html
 ```
-
