@@ -101,23 +101,33 @@ function calculateScore() {
 }
 
 function checkPlayerWon(player) {
-  return checkHorizontalWins(player) || checkVerticalWins(player) || checkDiagonalWins(player)
+  console.log('horizonal:', checkStraightWins(player, 'x'))
+  console.log('vertical: ', checkStraightWins(player, 'y'))
+  console.log('diagonal: ', checkDiagonalWins(player))
+  return checkStraightWins(player, 'x') || checkStraightWins(player, 'y') || checkDiagonalWins(player)
 }
 
-function checkHorizontalWins(player) {
-  const result = player.filter(item => item.y === 0).length > WIN_LENGTH ||
-    player.filter(item => item.y === 1).length > WIN_LENGTH ||
-    player.filter(item => item.y === WIN_LENGTH).length > WIN_LENGTH
+function checkStraightWins(player, xy) {
+  const result = player.filter(item => item[xy] === 0).length > WIN_LENGTH ||
+    player.filter(item => item[xy] === 1).length > WIN_LENGTH ||
+    player.filter(item => item[xy] === WIN_LENGTH).length > WIN_LENGTH
   return result
 }
 
-function checkVerticalWins(player) {
-  const result = player.filter(item => item.x === 0).length > WIN_LENGTH ||
-    player.filter(item => item.x === 1).length > WIN_LENGTH ||
-    player.filter(item => item.x === WIN_LENGTH).length > WIN_LENGTH
-   return result
+// function checkHorizontalWins(player) {
+//   const result = player.filter(item => item.y === 0).length > WIN_LENGTH ||
+//     player.filter(item => item.y === 1).length > WIN_LENGTH ||
+//     player.filter(item => item.y === WIN_LENGTH).length > WIN_LENGTH
+//   return result
+// }
 
-}
+// function checkVerticalWins(player) {
+//   const result = player.filter(item => item.x === 0).length > WIN_LENGTH ||
+//     player.filter(item => item.x === 1).length > WIN_LENGTH ||
+//     player.filter(item => item.x === WIN_LENGTH).length > WIN_LENGTH
+//    return result
+
+// }
 
 function checkDiagonalWins(player) {
   const diagonal1 = [
@@ -153,13 +163,17 @@ function checkDiagonalWins(player) {
 
 
 function arrayCompare(player, win) {
-  const filtered = player.filter(player_item => {
-    return win.filter(win_item => {
-      return player_item.x == win_item.x && player_item.y == win_item.y
+  let compares = player.map(item => {
+    const matches = win.map(diagonal => {
+      return diagonal.x == item.x && diagonal.y == item.y
     })
-  })
+    if (matches.includes(true)) {
+      return true
+    }
+    return false
 
-  return filtered.length > WIN_LENGTH
+  })
+  return compares.filter(match => match === true).length > WIN_LENGTH
 }
 
 /* start game by resetting / initializing the board */
