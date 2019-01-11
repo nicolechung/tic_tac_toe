@@ -4,5 +4,5 @@ This game uses [Parcel](https://parceljs.org/). Parcel should be included with t
 
 ```
 npm install
-parcel index.html
+npm run dev index.html
 ```
