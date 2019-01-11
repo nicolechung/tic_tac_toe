@@ -4,7 +4,7 @@
   "description": "Tic Tac Toe",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel index.html",
+    "dev": "node_modules/parcel-bundler/bin/cli.js index.html",
     "build": "parcel build index.html"
   },
   "repository": {
