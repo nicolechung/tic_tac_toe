@@ -12,6 +12,7 @@ let oStyle = 'background-color: #F012BE'
 let turnStyle = xStyle
 
 const WIN_LENGTH = 2
+let board
 
 function reset() {
   board = [
@@ -149,17 +150,17 @@ function checkDiagonalWins(player) {
   return result
 }
 
+
+
 function arrayCompare(player, win) {
-  let compares = player.map(item => {
-    const matches = win.map(diagonal => {
-      return diagonal.x == item.x && diagonal.y == item.y
+  const filtered = player.filter(player_item => {
+    return win.filter(win_item => {
+      return player_item.x == win_item.x && player_item.y == win_item.y
     })
-    if (matches.includes(true)) {
-       return true
-    }
-    return false
   })
-  return compares.filter(match => match === true).length > WIN_LENGTH
+
+  return filtered.length > WIN_LENGTH
 }
 
+/* start game by resetting / initializing the board */
 reset()
