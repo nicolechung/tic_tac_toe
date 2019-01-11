@@ -11,17 +11,7 @@ let xStyle = 'background-color: #7FDBFF'
 let oStyle = 'background-color: #F012BE'
 let turnStyle = xStyle
 
-let board = [
-  {x:0, y: 0},
-  {x:1, y: 0},
-  {x:2, y: 0},
-  {x:0, y: 1},
-  {x:1, y: 1},
-  {x:2, y: 1},
-  {x:0, y: 2},
-  {x:1, y: 2},
-  {x:2, y: 2},
-]
+const WIN_LENGTH = 2
 
 function reset() {
   board = [
@@ -62,7 +52,6 @@ function toggleTurn() {
 
 
 function handleClick(event) {
-  const item = event.target;
   const box = event.target.dataset.box
 
   if (score(turn, box)) {
@@ -106,6 +95,7 @@ function calculateScore() {
     el.innerHTML = winner + ' has won'
     const wonBox = document.getElementById('won')
     wonBox.classList.add("bounceIn")
+    setTimeout(reset, 2000)
   }
 }
 
@@ -114,16 +104,16 @@ function checkPlayerWon(player) {
 }
 
 function checkHorizontalWins(player) {
-  const result = player.filter(item => item.y === 0).length > 2 ||
-    player.filter(item => item.y === 1).length > 2 ||
-    player.filter(item => item.y === 2).length > 2
+  const result = player.filter(item => item.y === 0).length > WIN_LENGTH ||
+    player.filter(item => item.y === 1).length > WIN_LENGTH ||
+    player.filter(item => item.y === WIN_LENGTH).length > WIN_LENGTH
   return result
 }
 
 function checkVerticalWins(player) {
-  const result = player.filter(item => item.x === 0).length > 2 ||
-    player.filter(item => item.x === 1).length > 2 ||
-    player.filter(item => item.x === 2).length > 2
+  const result = player.filter(item => item.x === 0).length > WIN_LENGTH ||
+    player.filter(item => item.x === 1).length > WIN_LENGTH ||
+    player.filter(item => item.x === WIN_LENGTH).length > WIN_LENGTH
    return result
 
 }
@@ -169,5 +159,7 @@ function arrayCompare(player, win) {
     }
     return false
   })
-  return compares.filter(match => match == true).length > 2
+  return compares.filter(match => match === true).length > WIN_LENGTH
 }
+
+reset()
