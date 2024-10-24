@@ -24,7 +24,7 @@
     "babel-preset-env": "1.7.0",
     "node-sass": "4.11.0",
     "parcel-bundler": "1.11.0",
-    "sass": "1.16.0"
+    "sass": "1.80.4"
   },
   "dependencies": {
     "@babel/preset-react": "^7.0.0"
