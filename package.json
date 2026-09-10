@@ -27,6 +27,6 @@
     "sass": "1.16.0"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^8.0.0"
   }
 }
